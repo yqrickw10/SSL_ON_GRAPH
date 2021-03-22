@@ -1,0 +1,3 @@
+Please download the Pavia center dataset available from
+http://www.ehu.eus/ccwintco/index.php/Hyperspectral_Remote_Sensing_Scenes
+Then put Pavia.mat und Pavia_gt.mat into the Data/ subdirectory.
