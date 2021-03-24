@@ -76,6 +76,7 @@ lambda(1)=1;lambda(2)=1;lambda(3)=1;lambda(4)=1;lambda(5)=1;
 
 %convex splitting
 
+K = n;
 %the vectors store the final value
 a=zeros(n,M+1);
 b=zeros(n,M+1);
@@ -86,7 +87,7 @@ D1 = zeros(n,1);
 
 
 %intialization
-for k=1:n
+for k=1:K
     a(k,1) = dot(u(:,1),V(:,k));
     b(k,1) = dot(u(:,1).^3,V(:,k));
     d(k,1) = 0;
@@ -94,17 +95,21 @@ for k=1:n
 end
 
 for x=1:M
-    for k=1:n
+    for k=1:K
         a_next = 1/D1(k)*((1+dt/epsilon+c*dt)*a(k,x)-dt/epsilon*b(k,x)-dt*d(k,x));
         %update a
         a(k,x+1) = a_next;
+    end
+    
+    u(:,x+1)= sum(a(1:k,x+1)'.*V(:,1:K),2);
+    for k=1:K
         b_next = dot(u(:,x+1).^3,V(:,k));
         d_next = dot(lambda.*(u(:,x+1)-u(:,1)),V(:,k));
         %update
-        b(k,x) = b_next;
-        d(k,x) = d_next;
+        b(k,x+1) = b_next;
+        d(k,x+1) = d_next;        
     end
-    u(:,x+1)= sum(a(:,x+1).*V,2);
+    
 end
 
 
