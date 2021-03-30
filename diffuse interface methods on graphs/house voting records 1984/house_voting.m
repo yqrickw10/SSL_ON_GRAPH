@@ -2,16 +2,11 @@
 %Created Date: 2021/03/11
 %Matlab Version of Diffuse Interface Method on data
 
-%Need to work on: using graph representation in the matlab
-
 %Read Data
 data = readtable('house-votes-84.csv','ReadVariableNames',false);
 
-
 %set parameters
 tau = 0.3;
-
-
 c = 1;
 dt = 0.1;
 epsilon = 2;
@@ -20,7 +15,7 @@ M = 500; %number of iterations
 lambda_known = 1;
 lambda_unknown = 0;
 
-%create fully connected graph by using adjacency matrix representation
+
 votes = data(:,2:end);
 votes_array = table2array(votes);
 
@@ -76,6 +71,7 @@ lambda(1)=1;lambda(2)=1;lambda(3)=1;lambda(4)=1;lambda(5)=1;
 
 %convex splitting
 
+%number of eigenvectors we use
 K = n;
 %the vectors store the final value
 a=zeros(n,M+1);
@@ -101,7 +97,7 @@ for x=1:M
         a(k,x+1) = a_next;
     end
     
-    u(:,x+1)= sum(a(1:k,x+1)'.*V(:,1:K),2);
+    u(:,x+1)= sum(transpose(a(1:k,x+1)).*V(:,1:K),2);
     for k=1:K
         b_next = dot(u(:,x+1).^3,V(:,k));
         d_next = dot(lambda.*(u(:,x+1)-u(:,1)),V(:,k));
@@ -120,7 +116,9 @@ class_array = strrep(class_array,'democrat','1');
 class = str2double(class_array);
 
 %accuracy
-accuracy = sum(class==sign(u(:,end)))/n;
+accuracy = (sum(class==sign(u(:,end)))-5)/(n-5);
+disp('Prediction Accuracy');
+disp(accuracy);
 
 
 
