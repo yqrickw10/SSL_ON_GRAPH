@@ -1,4 +1,4 @@
-Author: Yuqi Wang (yuqi.wang@epfl.ch)
+Author: Yuqi Wang (yuqi.wang@epfl.ch) 2021/06/10
 
 Codes folder contains the codes for producing numerical results as well as the graphs. Figures folder contains the figures used in paper.
 
