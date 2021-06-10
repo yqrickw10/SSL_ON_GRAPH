@@ -3,6 +3,7 @@ Author: Yuqi Wang (yuqi.wang@epfl.ch) 2021/06/10
 Codes folder contains the codes for producing numerical results as well as the graphs. Figures folder contains the figures used in paper.
 
 -codes
+
 	- binary case experiments: two moon dataset/housing voting records test
 	
 	- multi-layer graphs experiments: citeseer/WebKB/cora/3sources/BBC test
@@ -12,6 +13,7 @@ Codes folder contains the codes for producing numerical results as well as the g
 	- subroutines: some additional tools used in experiments
 	
 	- figures.ipynb: jupyter notebook for creating figures shown in the paper
+	
 	
 -figrues
 
